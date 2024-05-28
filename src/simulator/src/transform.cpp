@@ -33,7 +33,7 @@ Transform::Transform() : rclcpp::Node("robot"){
                          std::bind(&Transform::velCallback, this, _1));
 
     last_update_moment_ = now();
-    last_vel_moment_ = last_update_moment_ - rclcpp::Duration(0.1);
+    last_vel_moment_ = last_update_moment_ - rclcpp::Duration(std::chrono::duration<double>(0.1));
     tf_broadcaster_ = std::make_unique<tf2_ros::TransformBroadcaster>(*this);
     tf_buffer_ = std::make_unique<tf2_ros::Buffer>(get_clock());
     odom_.header.stamp = last_update_moment_;
